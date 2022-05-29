@@ -1,0 +1,19 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+names['age','sex','cp','trestbps','chol','fbs','restecg','thalac','exang','oldpeak','slope','ca','tal','num']
+df_cleve=pd.read_csv('processed.cleveland.data',header=None,names=names,na_values=['?','?'], encoding='latin1',sep=',')
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+df_cleve['num'].value_counts()
+X=df_cleve.drop(columns='num',axis=1) #feautures
+Y=df_cleve['num'] #outcome
+X = X.values.astype(np.float)
+Y= Y.values.astype(np.float)
+print(X)
+print(Y)
+#splitting into training and test data
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=0,stratify=Y)
+#training the model with training data
+model=LogisticRegression()
+model.fit(X_train,Y_train)
